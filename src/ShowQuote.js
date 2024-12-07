@@ -1,5 +1,4 @@
 import GenerateQuote from './GenerateQuote.js';
-import Quote from './Quote.js';
 
 class ShowQuote {
   constructor() {
@@ -14,7 +13,23 @@ class ShowQuote {
   displayQuote() {
     this.currentQuote = GenerateQuote.getRandomQuote();
     this.quoteText.textContent = this.currentQuote.formatText();
+    this.quoteText.setAttribute('data-qoute-id', this.currentQuote.id);
     this.quoteAuthor.textContent = this.currentQuote.formatAuthor();
+  }
+
+  generateNewQuote(updateFavoriteButton) {
+    this.generateBtn.addEventListener('click', () => {
+      this.displayQuote();
+      updateFavoriteButton.updateStateBtn();
+    });
+  }
+
+  addToFavorites(favorites) {
+    this.favoritesBtn.addEventListener('click', () => {
+      favorites.favoritesQuotes.find((q) => q.id === this.currentQuote.id)
+        ? favorites.hideFavoriteCard(this.currentQuote)
+        : favorites.showFavoriteCard(this.currentQuote);
+    });
   }
 }
 
