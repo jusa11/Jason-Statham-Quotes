@@ -13,6 +13,7 @@ class App {
 
     window.addEventListener('load', () => {
       showQuote.displayQuote();
+      showQuote.generateJoke();
       showQuote.generateNewQuote(updateFavoriteButton);
       showQuote.addToFavorites(showFavoritesQuote);
       showFavoritesQuote.removeCardQuoteHandler();

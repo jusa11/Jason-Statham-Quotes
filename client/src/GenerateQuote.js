@@ -8,6 +8,18 @@ class GenerateQuote {
     const { text, author, id } = randomQute;
     return new Quote(text, author, id);
   }
+
+  static getRandomJokeAPI() {
+    const url = 'https://v2.jokeapi.dev/joke/Any?type=single';
+
+    return fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const { joke, category, id } = data;
+        return new Quote(joke, category, id);
+      })
+  }
 }
 
 export default GenerateQuote;

@@ -7,6 +7,7 @@ class ShowQuote {
     this.quoteAuthor = document.querySelector('.quotes-content-author');
     this.generateBtn = document.querySelector('.generate-btn');
     this.favoritesBtn = document.querySelector('.favorites-btn');
+    this.apiBtn = document.querySelector('.api-btn');
     this.currentQuote = null;
   }
 
@@ -15,6 +16,21 @@ class ShowQuote {
     this.quoteText.textContent = this.currentQuote.formatText();
     this.quoteText.setAttribute('data-qoute-id', this.currentQuote.id);
     this.quoteAuthor.textContent = this.currentQuote.formatAuthor();
+  }
+
+  displayJoke() {
+    GenerateQuote.getRandomJokeAPI().then((joke) => {
+      this.quoteText.textContent = joke.formatText();
+      this.quoteText.setAttribute('data-qoute-id', joke.id);
+      this.quoteAuthor.textContent = joke.formatAuthor();
+    });
+  }
+
+  generateJoke() {
+    this.apiBtn.addEventListener('click', () => {
+      console.log('click');
+      return this.displayJoke();
+    });
   }
 
   generateNewQuote(updateFavoriteButton) {
