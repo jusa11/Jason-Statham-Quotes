@@ -1,12 +1,18 @@
 const express = require('express'); // Common JS module
-// const qoutes = require('./data/qoutes');
+const qoutes = require('./data/qoutes');
 const app = express();
 const PORT = 3000;
 
-app.get('/', (req, res) => {
-  console.log(req.headers);
-  req.headers;
-  res.send('Hello World!');
+function getRandomQuote() {
+  const quote = qoutes[Math.floor(Math.random() * qoutes.length)];
+  return quote;
+}
+
+app.get('/quotes/random-single', (req, res) => {
+  // Это '/' - корневой endpoint, req - запрос, res - ответ
+  console.log(req.headers['user-agent']);
+  const randomQuote = getRandomQuote();
+  res.json(randomQuote);
 });
 
 app.listen(PORT, () => {

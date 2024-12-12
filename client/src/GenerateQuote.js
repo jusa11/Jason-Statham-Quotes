@@ -9,16 +9,15 @@ class GenerateQuote {
     return new Quote(text, author, id);
   }
 
-  static getRandomJokeAPI() {
+  static async getRandomJokeAPI() {
     const url = 'https://v2.jokeapi.dev/joke/Any?type=single';
+    const options = { headers: { 'Content-type': 'application/json' } };
 
-    return fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const { joke, category, id } = data;
-        return new Quote(joke, category, id);
-      })
+    const res = await fetch(url, options);
+    const data = await res.json();
+
+    const { joke, category, id } = data;
+    return new Quote(joke, category, id);
   }
 }
 

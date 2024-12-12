@@ -18,13 +18,21 @@ class ShowQuote {
     this.quoteAuthor.textContent = this.currentQuote.formatAuthor();
   }
 
-  displayJoke() {
+  async displayJoke() {
+    const joke = await GenerateQuote.getRandomJokeAPI();
+    console.log(joke);
+    this.quoteText.textContent = joke.formatText();
+    this.quoteText.setAttribute('data-qoute-id', joke.id);
+    this.quoteAuthor.textContent = joke.formatAuthor();
+  }
+
+  /* displayJoke() {
     GenerateQuote.getRandomJokeAPI().then((joke) => {
       this.quoteText.textContent = joke.formatText();
       this.quoteText.setAttribute('data-qoute-id', joke.id);
       this.quoteAuthor.textContent = joke.formatAuthor();
     });
-  }
+  } */
 
   generateJoke() {
     this.apiBtn.addEventListener('click', () => {
