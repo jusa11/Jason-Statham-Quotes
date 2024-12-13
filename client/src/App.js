@@ -14,6 +14,7 @@ class App {
     window.addEventListener('load', () => {
       showQuote.displayQuote();
       showQuote.generateJoke();
+      showQuote.generateOwnQuote();
       showQuote.generateNewQuote(updateFavoriteButton);
       showQuote.addToFavorites(showFavoritesQuote);
       showFavoritesQuote.removeCardQuoteHandler();

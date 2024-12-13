@@ -44,6 +44,10 @@ body {
   background-color: rgb(197, 255, 6);
 }
 
+.own-api-btn{
+  background-color: rgb(6, 255, 60);
+}
+
 .delete-btn {
   background-color: rgb(255, 55, 0);
 }
